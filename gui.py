@@ -3,6 +3,8 @@ from tkinter import ttk
 import tkinter.scrolledtext as st
 import time
 import customtkinter as ctk
+from PIL import Image
+
 
 selected_button = None
 
@@ -169,20 +171,20 @@ def toggle_mode():
     new_mode = "Light" if current_mode == "Dark" else "Dark"
     ctk.set_appearance_mode(new_mode)
 
-    if new_mode == "Light":
-        toggle_button.configure(image= PhotoImage(file="./light.png"))
-    else:
-        toggle_button.configure(image= PhotoImage(file="./dark.png"))
-
 # WINDOW
 window = ctk.CTk(fg_color=("#fbfbfe","#010104"))
 window.geometry('1024x750')
 window.title("GUI Sorting Algorithms")
 
+# IMAGES DECLARATION
+my_image = ctk.CTkImage(light_image=Image.open("./light.png"),
+                        dark_image=Image.open("./dark.png"),
+                        size=(20,20))
+
 # LIGHT DARK MODE
 toggle_button = ctk.CTkButton(window, 
                               text="Light/Dark",
-                              image=PhotoImage(file="./light.png"), command=toggle_mode,
+                              image=my_image, command=toggle_mode,
                               bg_color=("white","#010104"),
                             border_color=("white","#010104"),
                             hover_color=("#a78bfa","#9f7aea"),
